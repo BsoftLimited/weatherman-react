@@ -11,8 +11,18 @@ const Main = () =>{
 
 
     const locationQuery = useQuery({ queryKey: ['location'], queryFn: () => getUserLocation() });
+
+    const temperatureMutation = useMutation({
+        mutationFn: (init:{lat?: string, long?: string}) => {
+            return openWeatherAPI.get(`/data/2.5/forecast?lat=${init.lat}&lon=${init.long}&appid=${apiKey}`);
+        },
+    });
+
     const geoMutation = useMutation({
         mutationFn: (query) => openWeatherAPI.get(`/geo/1.0/direct?q=${query}&limit=1&appid=${apiKey}`),
+        onSuccess(data, variables, context) {
+            temperatureMutation.mutate({lat: data.data[0].lat, long: data.data[0].lon })
+        },
     });
 
     const fetchReports = useCallback(() => {
@@ -23,7 +33,7 @@ const Main = () =>{
 
     useEffect(()=> fetchReports(), [fetchReports]);
 
-    if(locationQuery.isLoading || geoMutation.isLoading){
+    if(locationQuery.isLoading || geoMutation.isLoading || temperatureMutation.isLoading ){
         return (
             <div>
                 <InfinitySpin width='200' color="#4fa94d" />
@@ -32,7 +42,7 @@ const Main = () =>{
     
     return (
         <div>
-            { JSON.stringify(geoMutation.data?.data) }
+            { JSON.stringify(temperatureMutation.data?.data) }
         </div>
     );
 }
