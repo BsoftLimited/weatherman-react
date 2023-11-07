@@ -2,5 +2,23 @@
   width: 100dvw;
   height: 100dvh;
   margin: 0;
-  overflow: auto;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.bg{
+    background-image: url("./assets/bg.jpg");
+    height: 100dvh;
+    width: 100dvw;
+    overflow: hidden;
+    background-attachment:local;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #3b0e3b;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

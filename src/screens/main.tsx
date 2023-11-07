@@ -3,6 +3,7 @@ import { apiKey, getUserLocation, openWeatherAPI } from "../utils";
 import { InfinitySpin } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 import { useCallback, useEffect } from "react";
+import { Result } from "../utils/types";
 
 const Main = () =>{
     const searchParams = new URLSearchParams(useLocation().search);
@@ -20,7 +21,7 @@ const Main = () =>{
 
     const geoMutation = useMutation({
         mutationFn: (query) => openWeatherAPI.get(`/geo/1.0/direct?q=${query}&limit=1&appid=${apiKey}`),
-        onSuccess(data, variables, context) {
+        onSuccess(data) {
             temperatureMutation.mutate({lat: data.data[0].lat, long: data.data[0].lon })
         },
     });
@@ -35,14 +36,19 @@ const Main = () =>{
 
     if(locationQuery.isLoading || geoMutation.isLoading || temperatureMutation.isLoading ){
         return (
-            <div>
-                <InfinitySpin width='200' color="#4fa94d" />
+            <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
+                <InfinitySpin width='340' color="#4fa94d" />
             </div>)
     }
+
+    const init = (temperatureMutation.data?.data) as Result;
     
     return (
-        <div>
-            { JSON.stringify(temperatureMutation.data?.data) }
+        <div className="bg">
+            <form style={{  }}>
+                <input type="text" name="q" />
+                <div></div>
+            </form>
         </div>
     );
 }
