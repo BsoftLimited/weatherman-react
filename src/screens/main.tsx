@@ -4,6 +4,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 import { Result } from "../utils/types";
+import { Input } from "../components";
 
 const Main = () =>{
     const searchParams = new URLSearchParams(useLocation().search);
@@ -44,11 +45,8 @@ const Main = () =>{
     const init = (temperatureMutation.data?.data) as Result;
     
     return (
-        <div className="bg">
-            <form style={{  }}>
-                <input type="text" name="q" />
-                <div></div>
-            </form>
+        <div className="bg" style={{ display: "flex", width:"100%", justifyContent:"center", alignItems:"flex-start" }}>
+            <Input />
         </div>
     );
 }
