@@ -7,35 +7,42 @@ import { Result } from "../utils/types";
 import { Input } from "../components";
 
 const Main = () =>{
-    const searchParams = new URLSearchParams(useLocation().search);
+    const  originalQuery = new URLSearchParams(useLocation().search).get("q");
 
-    const  originalQuery = searchParams.get("q");
-
-
-    const locationQuery = useQuery({ queryKey: ['location'], queryFn: () => getUserLocation() });
+    const locationMutation = useMutation({
+        mutationKey:  ["location"],
+        mutationFn: () => getUserLocation(),
+        onSuccess(data, variables, context) {
+            geoMutation.mutate(data.data);
+        },
+    });
 
     const temperatureMutation = useMutation({
+        mutationKey: ["temperature"],
         mutationFn: (init:{lat?: string, long?: string}) => {
             return openWeatherAPI.get(`/data/2.5/forecast?lat=${init.lat}&lon=${init.long}&appid=${apiKey}`);
         },
     });
 
     const geoMutation = useMutation({
-        mutationFn: (query) => openWeatherAPI.get(`/geo/1.0/direct?q=${query}&limit=1&appid=${apiKey}`),
+        mutationKey: ["geoposition"],
+        mutationFn: (query: string) => openWeatherAPI.get(`/geo/1.0/direct?q=${query}&limit=1&appid=${apiKey}`),
         onSuccess(data) {
             temperatureMutation.mutate({lat: data.data[0].lat, long: data.data[0].lon })
         },
     });
 
     const fetchReports = useCallback(() => {
-        if(locationQuery.isSuccess){
-            geoMutation.mutate(locationQuery.data?.data.city);
+        if(originalQuery){
+            geoMutation.mutate(originalQuery);
+        }else{
+            locationMutation.mutate();
         }
-    }, [locationQuery.isLoading]);
+    }, [originalQuery]);
 
     useEffect(()=> fetchReports(), [fetchReports]);
 
-    if(locationQuery.isLoading || geoMutation.isLoading || temperatureMutation.isLoading ){
+    if(locationMutation.isLoading || geoMutation.isLoading || temperatureMutation.isLoading ){
         return (
             <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "white" }}>
                 <InfinitySpin width='340' color="#4fa94d" />
@@ -45,8 +52,17 @@ const Main = () =>{
     const init = (temperatureMutation.data?.data) as Result;
     
     return (
-        <div className="bg" style={{ display: "flex", width:"100%", justifyContent:"center", alignItems:"flex-start" }}>
+        <div className="bg" style={{ display: "flex", width:"100%", flexDirection: "column",  justifyContent: "flex-start", alignItems:"center", paddingTop: 50, gap: 10 }}>
+            <h1 style={{ fontSize: 50, fontFamily:"sans-serif", fontWeight:"lighter" }}>Weather Man</h1>
             <Input />
+            <div style={{ display: "flex", flex: 1, flexDirection: "row" }}>
+                <div style={{  display: "flex", flex: 1, justifyContent: "center", alignItems: "center" }}>
+                    sdfghjhgfdsdfghj
+                </div>
+                <div>
+
+                </div>
+            </div>
         </div>
     );
 }
