@@ -1,0 +1,38 @@
+.weatherDetails{
+    display: flex;
+    flex-direction: column;
+}
+
+  
+  #image {
+    height: auto;
+    width: 10em;
+  }
+  
+  .description {
+    padding: 0;
+    text-align: left;
+    padding: 5px 0px 0px;
+  }
+  
+  .location {
+    font-size: 30px;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+  
+  .date {
+    font-size: 12px;
+  }
+  
+  .temperature {
+    font-size: 150px;
+    display: flex;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  
+  .weatherReport {
+    font-weight: 600;
+    font-size: 14px;
+  }

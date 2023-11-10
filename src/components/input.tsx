@@ -1,6 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import { apiKey, openWeatherAPI } from "../utils";
 import { useState } from "react";
+import "../assets/styles/input.scss";
 
 interface InputProps{
     
