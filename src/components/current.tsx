@@ -11,7 +11,7 @@ const Current:React.FC<CurrentProps> = ({forcast, location}) =>{
     return (
         <div className="weatherDetails">
             <span className="location">{ location.place}</span>
-            <div style={{ display:"flex", marginBottom: -60, padding:0, alignItems:"center" }}>
+            <div style={{ display:"flex", marginBottom: -30, padding:0, alignItems:"center" }}>
                 <h2 className="temperature">{ Math.round(forcast.main.temp) }<span style={{ fontSize: 50, lineHeight:"auto" }}>{ "℃" }</span></h2>
                 <img src={`https://openweathermap.org/img/wn/${forcast.weather[0].icon}@4x.png`} alt="" id="image" />
             </div>

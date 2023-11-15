@@ -67,7 +67,7 @@ const Main = () =>{
     if(!locationMutation.isError && !geoMutation.isError && !temperatureMutation.isError && results ){
         return (
             <div className="bg" style={{ display: "flex", flexDirection: "column", padding: 30 }}>
-                <h1 style={{ fontSize: 30, fontFamily:"sans-serif", fontWeight:"lighter" }}>Weather Man</h1>
+                <h1 style={{ fontSize: 24, fontFamily:"sans-serif", fontWeight:200 }}>Weather Man</h1>
                 <div style={{ display: "flex", flex: 1, width:"100%", flexDirection: "row" }}>
                     <div style={{ display: "flex", flex: 2, flexDirection: "column", height:"100%", alignItems:"center", justifyContent:"flex-end" }}>
                         <Current location={location} forcast={results.list[0]} />
