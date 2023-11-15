@@ -1,5 +1,5 @@
 import { FaSearch } from "react-icons/fa";
-import { apiKey, openWeatherAPI } from "../utils";
+import { openWeatherAPI } from "../utils";
 import { useState } from "react";
 import "../assets/styles/input.scss";
 
@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = () =>{
         const query = event.target.value;
         setInputValue(query);
 
-        if (inputValue.trim() === '') {
+        /*if (inputValue.trim() === '') {
             setSuggestions([]);
             return;
         }
@@ -25,12 +25,12 @@ const Input: React.FC<InputProps> = () =>{
         const firstWord = words[0];
         if(inputValue.includes(" ") && firstWord.length > 1){
             try {
-                const response = await openWeatherAPI.get(`/data/2.5/find?q=${firstWord}&type=like&sort=population&cnt=10&appid=${apiKey}`);
+                const response = await openWeatherAPI.get(`/data/2.5/find?q=${firstWord}&type=like&sort=population&cnt=10&appid=${import.meta.env.VITE_APIKEY}`);
                 setSuggestions(response.data.list);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
-        }
+        }*/
     };
 
     return (
