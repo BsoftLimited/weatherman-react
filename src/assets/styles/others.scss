@@ -1,0 +1,44 @@
+@mixin option-btn{
+    flex: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    border: solid transparent 2px;
+    backdrop-filter: blur(2px);
+    font-size: 14px;
+    font-weight: 300
+}
+
+.others-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%; flex: 1;
+    align-items: flex-end;
+}
+
+.options{
+    display: flex;
+    background-color: transparent;
+    color: white;
+    margin-top: 30px;
+}
+
+.option-btn-left{
+    @include option-btn;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.option-btn-right{
+    @include option-btn;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.option-btn-active{
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+    color: grey;
+}

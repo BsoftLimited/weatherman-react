@@ -3,8 +3,9 @@ import { getUserLocation, openWeatherAPI } from "../utils";
 import { InfinitySpin } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
-import { Current, Input } from "../components";
+import { Current, Input, Others } from "../components";
 import { Data } from "../utils/types";
+import { FaCogs } from "react-icons/fa";
 
 const Main = () =>{
     const  originalQuery = new URLSearchParams(useLocation().search).get("q");
@@ -76,11 +77,14 @@ const Main = () =>{
                     <div style={{ display: "flex", flex: 2, flexDirection: "column", height:"100%", alignItems:"center", justifyContent:"flex-end" }}>
                         <Current place={forcast.timezone} location={location} current={forcast?.current!} />
                     </div>
-                    <div style={{ display: "flex", flex: 3, flexDirection: "column", height:"100%", backgroundColor:"#00000036", padding: 10, borderRadius: 30, backdropFilter:"blur(2px)" }}>
-                        <Input />
-                        <div>
-
+                    <div style={{ display: "flex", flex: 3, flexDirection: "column", alignItems: "end", height:"100%", backgroundColor:"#00000036", padding: 10, borderRadius: 30, backdropFilter:"blur(2px)" }}>
+                        <div style={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center" }}>
+                            <Input />
+                            <div style={{ cursor: "pointer", margin: "10px" }}>
+                                <FaCogs size={30} color="white"/>
+                            </div>
                         </div>
+                        <Others />
                     </div>
                 </div>
             </div>
