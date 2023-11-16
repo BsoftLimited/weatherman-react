@@ -9,26 +9,14 @@ import { FaCogs } from "react-icons/fa";
 
 const Main = () =>{
     const  originalQuery = new URLSearchParams(useLocation().search).get("q");
-    const [location, setLocation] = useState({ latitude: "", longitude: "", country: "", place: "" });
     const [forcast, setForcast] = useState<Data>();
 
-    const locationMutation = useMutation({
-        mutationKey:  ["location"],
-        mutationFn: () => getUserLocation(),
-        onSuccess(data) {
-            //alert(JSON.stringify(data.data));
-            setLocation({latitude: data.data.latitude, longitude: data.data.longitude, country: data.data.country_name, place: data.data.city});
-            temperatureMutation.mutate({lat: data.data.latitude, long: data.data.longitude});
-        },
-        onError(error, variables, context) {
-            alert(`${import.meta.env.VITE_APIKEY} - ${JSON.stringify(error)}`);
-        },
-    });''
+    
 
     const temperatureMutation = useMutation({
         mutationKey: ["temperature"],
         mutationFn: (init:{lat: string, long: string}) => {
-            return openWeatherAPI.get(`/data/3.0/onecall?lat=${init.lat}&lon=${init.long}&appid=${import.meta.env.VITE_APIKEY}&units=metric`);
+            return openWeatherAPI.get(`/data/3.0/onecall?lat=${init.lat}&lon=${init.long}&exclude=minutely&appid=${import.meta.env.VITE_APIKEY}&units=metric`);
         },
         onSuccess(data) {
             setForcast(data.data);
@@ -70,6 +58,7 @@ const Main = () =>{
     }
 
     if(!locationMutation.isError && !geoMutation.isError && !temperatureMutation.isError && forcast ){
+        console.log(JSON.stringify(forcast));
         return (
             <div className="bg" style={{ display: "flex", flexDirection: "column", padding: 30 }}>
                 <h1 style={{ fontSize: 24, fontFamily:"sans-serif", fontWeight:200 }}>Weather Man</h1>

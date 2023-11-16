@@ -5,10 +5,13 @@
     padding-top: 6px;
     padding-bottom: 6px;
     cursor: pointer;
-    border: solid transparent 2px;
+    border: solid transparent 1px;
     backdrop-filter: blur(2px);
     font-size: 14px;
-    font-weight: 300
+    font-weight: 300;
+    &:hover{
+        border-color: whitesmoke;
+    }
 }
 
 .others-container{
