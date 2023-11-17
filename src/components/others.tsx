@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../assets/styles/others.scss"
 import DailyView from "./daily";
+import HourlyView from "./hourly";
 
 interface OthersProps{
 
@@ -20,6 +21,7 @@ const Others: React.FC<OthersProps> = ({}) =>{
             </div>
             <div style={{ display: "flex", width: "100%", flex: 1, flexWrap: "wrap", marginTop: 20 }}>
                 { option === "daily" && <DailyView /> }
+                { option === "hourly" && <HourlyView /> }
             </div>
         </div>
     );

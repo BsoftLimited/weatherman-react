@@ -1,21 +1,15 @@
-import { useQueryClient } from "react-query";
+import { useContext } from "react";
 import { Daily } from "../utils/types";
+import { AppContext, AppContextType } from "../utils/providers";
 
-interface DailyViewProps{
-    daily?: Daily[]
-}
-
-const DailyView: React.FC<DailyViewProps> = () =>{
-    const queryClient = useQueryClient();
-
-    const data = queryClient.getQueriesData(["temperature"]);
-
+const DailyView = () =>{
+    const daily: Daily[] = (useContext(AppContext) as AppContextType).forcast?.daily as Daily[];
     
     return (
         <div>
             {
                 //daily.map((day)=><div>{ day.temp.day }</div>)
-                JSON.stringify(data)
+                JSON.stringify(daily)
             }
         </div>
     );
