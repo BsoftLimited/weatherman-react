@@ -1,18 +1,27 @@
+import { useState } from "react";
 import "../assets/styles/others.scss"
+import DailyView from "./daily";
+import HourlyView from "./hourly";
 
 interface OthersProps{
 
 }
 
 const Others: React.FC<OthersProps> = ({}) =>{
-    return (
-        <div className="others-continer" style={{}}>
-            <div className="options" style={{ }}>
-                <div className="option-btn-left option-btn-active" style={{ }}>Hourly</div>
-                <div className="option-btn-right" style={{ }}>Daily</div>
-            </div>
-            <div style={{ width: "100%"}}>
+    const [option, setOption] = useState<"daily" | "hourly">("hourly");
 
+    const toHourly = () => setOption("hourly");
+    const toDaily = () => setOption("daily");
+
+    return (
+        <div className="others-container">
+            <div className="options" style={{ }}>
+                <div className={`option-btn-left ${ option === "hourly" && "option-btn-active" }`} style={{ }} onClick={toHourly}>Hourly</div>
+                <div className={`option-btn-right ${ option === "daily" && "option-btn-active"}`} style={{ }} onClick={toDaily}>Daily</div>
+            </div>
+            <div style={{ display: "flex", width: "100%", flex: 1, flexWrap: "wrap", marginTop: 20 }}>
+                { option === "daily" && <DailyView /> }
+                { option === "hourly" && <HourlyView /> }
             </div>
         </div>
     );

@@ -1,11 +1,13 @@
-import { Route, Routes, HashRouter, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Main from "./main";
-import Error from "./error";
+import AppProvider from "../utils/providers";
 
 const App = () =>{
     return (
         <BrowserRouter>
-            <Main />
+            <AppProvider>
+                <Main />
+            </AppProvider>
         </BrowserRouter>
     );
 }
