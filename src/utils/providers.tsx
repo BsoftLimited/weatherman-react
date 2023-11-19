@@ -14,6 +14,7 @@ export type AppContextType = {
     message: any;
     location?: { latitude: string, longitude: string, country: string, place: string }
     load: (city: string) => void;
+    refresh: () => void;
     toggleUnits: () => void;
 };
 
@@ -44,7 +45,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         mutationKey: ["temperature"],
         onMutate:()=>setState(init => { return { ...init, loading: true, isError: false, message: "Gathering weather report,please wait"}}),
         mutationFn: (init:{lat: string, long: string}) => {
-            return openWeatherAPI.get(`/data/3.0/onecall?lat=${init.lat}&lon=${init.long}&exclude=minutely&appid=${import.meta.env.VITE_APIKEY}&units=metric`);
+            return openWeatherAPI.get(`/data/3.0/onecall?lat=${init.lat}&lon=${init.long}&exclude=minutely&appid=${import.meta.env.VITE_APIKEY}&units=${settings.unit}`);
         },
         onSuccess(data) {
             setState(init => { return { ...init, forcast: data.data, loading: false}});
@@ -71,6 +72,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     });
 
     const load = async (city: string) => geoMutation.mutate(city);
+    const refresh = async () => temperatureMutation.mutate({lat: location!.latitude, long: location!.longitude});
 
     const toggleUnits = async() => setSettings((init)=>{ return {...init, unit: init.unit === "metric" ? "imperical" : "metric" }});
 
@@ -79,7 +81,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
             geoMutation.mutate(originalQuery);
         }if(location){
             temperatureMutation.mutate({lat: location.latitude, long: location.longitude});
-        }else{
+        }else if(!originalQuery){
             locationMutation.mutate();
         }
     }, [location]);
@@ -87,7 +89,7 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     React.useEffect(()=> { init() }, [init, location]);
 
     return (
-        <AppContext.Provider value={{ ...state, setting:settings,  load, location, toggleUnits}}>{ children }</AppContext.Provider>
+        <AppContext.Provider value={{ ...state, setting:settings,  load, location, toggleUnits, refresh}}>{ children }</AppContext.Provider>
     );
 }
 
