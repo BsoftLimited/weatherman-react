@@ -9,7 +9,7 @@ const HourlyView:React.FC = () =>{
     const reduce = () =>{
         let init: Hourly[] = [];
         let index = 1;
-        while(init.length < 12){
+        while(init.length < 10){
             init.push(hourly[index]);
             index += 1;
         }
@@ -17,15 +17,15 @@ const HourlyView:React.FC = () =>{
     }
 
     return (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div className="others-item-container">
             { reduce().map((hour)=>{return (
-                <div style={{ textAlign: "center", backdropFilter: "blur(2px)", backgroundColor: "transparent", margin: 8, borderRadius: 20, paddingTop:8, paddingBottom: 8 }}>
-                    <h2 style={{ fontWeight: 300, letterSpacing: 1.6 }}>{ `${new Date(hour.dt * 1000).getHours()}:00` }</h2>
-                    <img src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`} alt="" style={{ height: 200, width: 200, marginTop: -40, marginBottom: -50 }}/>
-                    <div style={{ fontSize: 30 }}>{ Math.round(hour.temp) }{ "\u00B0"}</div>
-                    <div style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center", fontSize: 20, fontWeight: 200, marginTop: 10 }}>
-                        <div><BiDroplet /> { hour.humidity }</div>
-                        <div><BiWind /> { hour.wind_speed }</div>
+                <div className="others-item">
+                    <h3 className="others-item-name">{ `${new Date(hour.dt * 1000).getHours()}:00` }</h3>
+                    <img className="others-item-image" src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`} alt="" />
+                    <div className="others-item-temp">{ Math.round(hour.temp) }{ "\u00B0"}</div>
+                    <div className="others-item-more-container">
+                        <div className="others-item-more"><BiDroplet /> { hour.humidity }</div>
+                        <div className="others-item-more"><BiWind /> { hour.wind_speed }</div>
                     </div>
                 </div>
             ); }) }

@@ -22,7 +22,8 @@
   }
   
   .date {
-    font-size: 12px;
+    font-size: 18px;
+    color: white
   }
   
   .temperature {
@@ -34,5 +35,13 @@
   
   .weatherReport {
     font-weight: 600;
-    font-size: 14px;
+    font-size: 20px;
+    color: white
+  }
+
+  @media (max-width: 991px) {
+  }
+  
+  @media (max-width: 768px) {
+      
   }

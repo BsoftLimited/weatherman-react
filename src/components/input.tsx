@@ -1,5 +1,4 @@
 import { FaSearch } from "react-icons/fa";
-import { openWeatherAPI } from "../utils";
 import { useState } from "react";
 import "../assets/styles/input.scss";
 
@@ -9,7 +8,7 @@ interface InputProps{
 
 const Input: React.FC<InputProps> = () =>{
     const [inputValue, setInputValue] = useState('');
-    const [suggestions, setSuggestions] = useState<any[]>([]);
+    //const [suggestions, setSuggestions] = useState<any[]>([]);
 
     const handleInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const query = event.target.value;
@@ -30,20 +29,21 @@ const Input: React.FC<InputProps> = () =>{
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
-        }*/
+        }
+
+        {suggestions.map((city) => (
+                    <label style={{ display: "block" }} key={city.id}>{city.name}</label>
+                ))}
+        
+        */
     };
 
     return (
-        <div>
+        <div style={{ flex: 1 }}>
             <form className="input-form">
                 <div className="input-icon"><FaSearch color="white"/></div>
                 <input className="input" type="text" name="q" placeholder="search location" value={inputValue} onChange={handleInputChange}/>
             </form>
-            <div>
-                {suggestions.map((city) => (
-                    <label style={{ display: "block" }} key={city.id}>{city.name}</label>
-                ))}
-            </div>
         </div>
     );
 }
