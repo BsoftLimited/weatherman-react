@@ -10,8 +10,18 @@
     flex: 1;
     flex-direction: column;
     height: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+}
+
+.main-bottom{
+    //display: flex;
+    //flex-direction: column;
+    //background-color:#00000036;
+    padding-top: 3rem;
+    //border-radius: 30px;
+    //backdrop-filter:blur(2px);
+    //margin-bottom: 20px;
 }
 
 .main-current-container{
@@ -38,11 +48,14 @@
 }
 
 .main-chat-root{ 
-    padding-right: 20px;
+    padding-right: 1.2rem;
 }
 
 @media (max-width: 991px) {
-    
+    .main-top{
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+    }
 }
   
 @media (max-width: 768px) {
@@ -50,20 +63,32 @@
         flex: auto;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        //gap: 20px;
+    }
+
+    .main-bottom{
+        //display: flex;
+        //flex-direction: column;
+        //background-color:#00000036;
+        padding-top: 0rem;
+        //border-radius: 30px;
+        //backdrop-filter:blur(2px);
+        //margin-bottom: 20px;
     }
 
     .main-top{
         flex: auto;
         height: auto;
         width: 100%;
-        margin-top: 140px;
-        gap: 20px;
+        margin-top: 120px;
+        gap: 16px;
+        //padding-left: 20px;
+        //padding-right: 20px;
     }
 
     .main-chat-root{ 
-        padding-right: 0px;
-        margin-top: 10px;
+        //padding-right: 0px;
+        //margin-top: 10px;
     }
 
     .main-bottom-search-settings-container{
