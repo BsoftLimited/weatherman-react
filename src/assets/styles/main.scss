@@ -15,13 +15,13 @@
 }
 
 .main-bottom{
-    //display: flex;
-    //flex-direction: column;
-    //background-color:#00000036;
-    padding-top: 3rem;
-    //border-radius: 30px;
-    //backdrop-filter:blur(2px);
-    //margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color:#00000036;
+    margin-top: 3rem;
+    padding: 1.2rem;
+    border-radius: 30px;
+    backdrop-filter:blur(2px);
 }
 
 .main-current-container{
@@ -69,11 +69,12 @@
     .main-bottom{
         //display: flex;
         //flex-direction: column;
-        //background-color:#00000036;
+        background-color: transparent;
+        padding: 0px;
         padding-top: 0rem;
         //border-radius: 30px;
         //backdrop-filter:blur(2px);
-        //margin-bottom: 20px;
+        margin-bottom: 20px;
     }
 
     .main-top{
