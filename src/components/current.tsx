@@ -10,7 +10,7 @@ const CurrentView = () =>{
     return (
         <div className="weatherDetails">
             <div className="location">{location?.place}<span> - { forcast?.timezone }</span></div>
-            <div style={{ display:"flex", marginBottom: "-1.3rem", padding:0, alignItems:"center" }}>
+            <div style={{ display:"flex", marginBottom: "-1.0rem", padding:0, alignItems:"center" }}>
                 <h2 className="temperature">{ Math.round(forcast!.current.temp) }<span className="degree">{ "℃" }</span></h2>
                 <img src={`https://openweathermap.org/img/wn/${forcast!.current.weather[0].icon}@4x.png`} alt="" id="image" />
             </div>
