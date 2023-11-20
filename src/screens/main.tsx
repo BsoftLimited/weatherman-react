@@ -95,8 +95,8 @@ const Main = () =>{
                     <h1 className="header-bar-title">Weather Man</h1>
                     <div className="header-bar-search-settings-container">
                         <Input />
-                        <div style={{ cursor: "pointer", margin: "10px" }}>
-                            <FaCogs size={30} color="white"/>
+                        <div style={{ cursor: "pointer", margin: "1.2rem" }}>
+                            <FaCogs size={18} color="white"/>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ const Main = () =>{
                             </div>
                         </div>
                     </div>
-                    <div style={{ display: "flex", flexDirection: "column", backgroundColor:"#00000036", padding: 10, borderRadius: 30, backdropFilter:"blur(2px)" }}>
+                    <div className="main-bottom" style={{  }}>
                         <div className="main-bottom-search-settings-container">
                             <Input />
                             <div style={{ cursor: "pointer", margin: "10px" }}>

@@ -1,13 +1,13 @@
 @mixin option-btn{
     flex: 1;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-left: 0.92rem;
+    padding-right: 0.92rem;
+    padding-top: 0.42rem;
+    padding-bottom: 0.42rem;
     cursor: pointer;
     border: solid transparent 2px;
     backdrop-filter: blur(2px);
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: 300;
     background-color: #00000020;
     &:hover{
@@ -27,19 +27,19 @@
     display: flex;
     background-color: transparent;
     color: white;
-    margin-top: 30px;
+    margin-top: 2.3rem;
 }
 
 .option-btn-left{
     @include option-btn;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0.6rem;
+    border-bottom-left-radius: 0.6rem;
 }
 
 .option-btn-right{
     @include option-btn;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 0.6rem;
+    border-bottom-right-radius: 0.6rem;
 }
 
 .option-btn-active{
@@ -59,28 +59,28 @@
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(2px);
-    background-color: #ffffff30;
-    margin: 8px;
-    border-radius: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px; 
+    background-color: #ffffff50;
+    margin: 0.4rem;
+    border-radius: 1.6rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; 
 }
 
 .others-item-name{
     font-weight: 300;
     letter-spacing: 1.6;
-    font-size: 20px
+    font-size: 1.2rem
 }
 
 .others-item-image{
-    height: 200px;
-    width: 200px;
-    margin-top: -30px;
-    margin-bottom: -40px;
+    height: 12rem;
+    width: 12rem;
+    margin-top: -2.7rem;
+    margin-bottom: -2.5rem;
 }
 
 .others-item-temp{
-    font-size: 30px;
+    font-size: 1.6rem;
     font-weight: 300;
 }
 
@@ -88,9 +88,9 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 18px;
-    font-weight: 200px;
-    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-top: 0.6rem;
     width: 100%
 }
 
@@ -103,15 +103,33 @@
     .others-item-container{
         grid-template-columns: auto auto auto;
     }
+
+    .others-item-image{
+        /*height: 160px;
+        width: 160px;
+        margin-top: -30px;
+        margin-bottom: -40px;*/
+    }
 }
 
 @media (max-width: 768px) {
     .others-item-container{
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto;
         width: 100%;
     }
 
     .options{
-        margin-top: 10px;
+        //margin-top: 20px;
+        margin-right: 1rem;
+    }
+
+    .options{
+        //margin-top: 10px;
+    }
+
+    .others-item{
+        /*margin: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;*/
     }
 }
