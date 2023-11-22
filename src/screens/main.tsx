@@ -1,7 +1,7 @@
 import { InfinitySpin } from "react-loader-spinner";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Current, Input, Others } from "../components";
-import { FaCogs } from "react-icons/fa";
+import { FaCog, FaCogs } from "react-icons/fa";
 import { AppContext, AppContextType } from "../utils/providers";
 import { Chart as ChartJS, CategoryScale, LineController, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { ReactChart } from "chartjs-react";
@@ -53,8 +53,8 @@ const Main = () =>{
 
     if(loading ){
         return (
-            <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", backgroundColor: "white" }}>
-                <InfinitySpin width='340' color="#4fa94d" />
+            <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", backgroundColor: "red"}}>
+                <InfinitySpin width='340' color="white" />
                 <div>{message}</div>
             </div>);
     }
@@ -95,9 +95,6 @@ const Main = () =>{
                     <h1 className="header-bar-title">Weather Man</h1>
                     <div className="header-bar-search-settings-container">
                         <Input />
-                        <div style={{ cursor: "pointer", margin: "1.2rem" }}>
-                            <FaCogs size={18} color="white"/>
-                        </div>
                     </div>
                 </div>
                 <div className="main">
@@ -111,13 +108,7 @@ const Main = () =>{
                             </div>
                         </div>
                     </div>
-                    <div className="main-bottom" style={{  }}>
-                        <div className="main-bottom-search-settings-container">
-                            <Input />
-                            <div style={{ cursor: "pointer", margin: "10px" }}>
-                                <FaCogs size={30} color="white"/>
-                            </div>
-                        </div>
+                    <div className="main-bottom">
                         <Others />
                     </div>
                 </div>

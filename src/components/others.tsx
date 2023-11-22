@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../assets/styles/others.scss"
 import DailyView from "./daily";
 import HourlyView from "./hourly";
+import Input from "./input";
 
 interface OthersProps{
 
@@ -15,9 +16,12 @@ const Others: React.FC<OthersProps> = ({}) =>{
 
     return (
         <div className="others-container">
-            <div className="options" style={{ }}>
-                <div className={`option-btn-left ${ option === "hourly" && "option-btn-active" }`} style={{ }} onClick={toHourly}>Hourly</div>
-                <div className={`option-btn-right ${ option === "daily" && "option-btn-active"}`} style={{ }} onClick={toDaily}>Daily</div>
+            <div className="main-bottom-search-settings-container">
+                <div className="desktop-search"><Input /></div>
+                <div className="options">
+                    <div className={`option-btn-left ${ option === "hourly" && "option-btn-active" }`} onClick={toHourly}>Hourly</div>
+                    <div className={`option-btn-right ${ option === "daily" && "option-btn-active"}`} onClick={toDaily}>Daily</div>
+                </div>
             </div>
             <div style={{ display: "flex", width: "100%", flex: 1, flexWrap: "wrap", marginTop: 20 }}>
                 { option === "daily" && <DailyView /> }
