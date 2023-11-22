@@ -1,7 +1,6 @@
 import { InfinitySpin } from "react-loader-spinner";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Current, Input, Others } from "../components";
-import { FaCog, FaCogs } from "react-icons/fa";
 import { AppContext, AppContextType } from "../utils/providers";
 import { Chart as ChartJS, CategoryScale, LineController, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { ReactChart } from "chartjs-react";

@@ -10,7 +10,7 @@ interface InputProps{
 
 const Input: React.FC<InputProps> = () =>{
     const [inputValue, setInputValue] = useState('');
-    let [searchParams, setSearchParams] = useSearchParams();
+    let [,setSearchParams] = useSearchParams();
 
     const { load } = useContext(AppContext) as AppContextType;
 
