@@ -15,10 +15,10 @@ const CurrentView = () =>{
                 <img src={`https://openweathermap.org/img/wn/${forcast!.current.weather[0].icon}@4x.png`} alt="" id="image" />
             </div>
             <div className="description">
-                <p className="weatherReport">{ forcast!.current.weather[0].description }</p>
+                <p className="weatherReport">{ forcast!.current.weather[0].main }<span> - { forcast!.current.weather[0].description }</span></p>
                 <div className="wetherReport-others">
-                    <div style={{ display: "flex", alignItems: "center", }}><BiDroplet /> { forcast?.current.humidity }</div>
-                    <div style={{ display: "flex", alignItems: "center", }}><BiWind /> { forcast?.current.wind_speed }</div>
+                    <div style={{ display: "flex", alignItems: "center", }}><BiDroplet /> { forcast?.current.humidity }%</div>
+                    <div style={{ display: "flex", alignItems: "center", }}><BiWind /> { `${forcast?.current.wind_speed} \u33A7` }</div>
                 </div>
             </div>
         </div>

@@ -20,9 +20,9 @@ const HourlyView:React.FC = () =>{
         <div className="others-item-container">
             { reduce().map((hour)=>{return (
                 <div className="others-item">
-                    <h3 className="others-item-name">{ `${new Date(hour.dt * 1000).getHours()}:00` }</h3>
+                    <h3 className="others-item-name">{ `${new Date(hour.dt * 1000).getUTCHours()}:00 UTC` }</h3>
                     <img className="others-item-image" src={`https://openweathermap.org/img/wn/${hour.weather[0].icon}@4x.png`} alt="" />
-                    <div className="others-item-temp">{ Math.round(hour.temp) }{ "\u00B0"}</div>
+                    <div className="others-item-temp">{ Math.round(hour.temp) }{ "\u00B0C"}</div>
                     <div className="others-item-more-container">
                         <div className="others-item-more"><BiDroplet /> { hour.humidity }</div>
                         <div className="others-item-more"><BiWind /> { hour.wind_speed }</div>

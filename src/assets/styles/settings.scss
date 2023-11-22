@@ -1,0 +1,65 @@
+:root{
+    --draggable-width:60px;
+    --draggable-left: 0px;
+
+    --sidebar-width: 320px;
+    --sidebar-left: 50px;
+    
+}
+
+
+@keyframes draggable-animation-expand{
+    0% { width: var(--min-width); }
+    100% { width: var(--max-width); }
+}
+
+@keyframes draggable-animation-minimize{
+    0% { width: var(--max-width); }
+    100% { width: var(--min-width); }
+}
+
+@keyframes sidebar-animation-expand{
+    0% { width: var(--min-width); }
+    100% { width: var(--max-width); }
+}
+
+@keyframes sidebar-animation-minimize{
+    0% { width: var(--max-width); }
+    100% { width: var(--min-width); }
+}
+
+
+@mixin settings-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 40px;
+    min-height: 40px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.settings-icon-container-left{
+    @include settings-icon-container;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.settings-icon-container-right{
+    @include settings-icon-container;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.settings-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 2s linear infinite;
+}
