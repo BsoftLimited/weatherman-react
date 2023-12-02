@@ -5,12 +5,14 @@ import { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useLocation } from 'react-router-dom';
 
+interface Location{ latitude: string, longitude: string, country: string, place: string }
+
 export type AppContextType = {
     forcast?: Data;
     loading: boolean;
     isError: boolean;
     message: any;
-    location?: { latitude: string, longitude: string, country: string, place: string }
+    location?: Location
     load: (city: string) => void;
     refresh: () => void;
 };
@@ -19,7 +21,7 @@ export const AppContext = React.createContext<AppContextType | null>(null);
 
 const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [state, setState] = useState<{forcast?: Data, loading: boolean, isError: boolean, message: any }>({loading: false, isError: false, message: ""});
-    const [location, setLocation] = useState<{ latitude: string, longitude: string, country: string, place: string }>();
+    const [location, setLocation] = useState<Location>();
 
     const  originalQuery = new URLSearchParams(useLocation().search).get("q");
 
@@ -33,7 +35,9 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
         },
         onError(error) {
             //alert(`${import.meta.env.VITE_APIKEY} - ${JSON.stringify(error)}`);
-            console.log("Location Error", error);
+            if(import.meta.env.VITE_IS_DEVELOPMENT){
+                console.error("Location Error", error);
+            }
             setState(init => { return { ...init, loading: false, isError: true, message: "Unable to get user location, check network settings."}});
         },
     });
@@ -49,7 +53,9 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
             //alert(JSON.stringify(data));
         },
         onError(error) {
-            console.log("Forecast Error", error);
+            if(import.meta.env.VITE_IS_DEVELOPMENT){
+                console.error("Forecast Error", error);
+            }
             setState(init => { return { ...init, loading: false, isError: true, message: `Unable to get forcast repost for ${location?.place}`}});
             //alert(`${import.meta.env.VITE_APIKEY} - ${JSON.stringify(error)}`);
         },
@@ -64,7 +70,9 @@ const AppProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
             setLocation({latitude: data.data[0].lat, longitude: data.data[0].lon, country: data.data[0].state || data.data[0].country, place: data.data[0].name});
         },
         onError(error, variables) {
-            console.log("Geo position Error", error);
+            if(import.meta.env.VITE_IS_DEVELOPMENT){
+                console.error("Geo position Error", error);
+            }
             //alert(`${import.meta.env.VITE_APIKEY} - ${JSON.stringify(error)}`);
             setState(init => { return { ...init, loading: false, isError: true, message: `Unable to geographical loction of ${variables}, either location is not in our database or network error`}});
         },

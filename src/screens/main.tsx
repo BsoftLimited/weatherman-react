@@ -1,4 +1,4 @@
-import { InfinitySpin } from "react-loader-spinner";
+import { BallTriangle } from "react-loader-spinner";
 import { useContext } from "react";
 import { Current, Input, Others } from "../components";
 import { AppContext, AppContextType } from "../utils/providers";
@@ -52,17 +52,21 @@ const Main = () =>{
 
     if(loading ){
         return (
-            <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", backgroundColor: "red"}}>
-                <InfinitySpin width='340' color="white" />
-                <div>{message}</div>
+            <div style={{ width: "100dvw", height: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", backgroundColor: "white",}}>
+                <BallTriangle width='7rem' color="#4576ff" />
+                <div style={{ color: "grey", fontSize: "1.3rem", fontWeight: 300, fontFamily: "sans-serif", marginTop: "3rem" }}>{message}</div>
             </div>);
     }
 
-    if(!isError && forcast ){
-        //console.log(JSON.stringify(forcast));
+    if(isError){
+        return (
+            <div>{ message }</div>
+        );
+    }
 
-        const data = graphData(forcast.hourly);
-  
+    if(forcast){
+        const data = graphData(forcast!.hourly);
+
         const chartData = {
             labels: data.labels,
             datasets: [
@@ -89,9 +93,15 @@ const Main = () =>{
 
         return (
             <div className="bg">
-                <h1 className="header-title">Weather Man</h1>
-                <div className="header-bar">
-                    <h1 className="header-bar-title">Weather Man</h1>
+                <div className="header-bar-desktop">
+                    <div className="header-icon">W</div>
+                    <div className="header-title">Weather Man</div>
+                </div>
+                <div className="header-bar-mobile">
+                    <div style={{ width: "100%", display: "flex", alignItems: "center", gap: "0.2rem" }}>
+                        <div className="header-icon">W</div>
+                        <h1 className="header-bar-title">Weather Man</h1>
+                    </div>
                     <div className="header-bar-search-settings-container">
                         <Input />
                     </div>
@@ -112,10 +122,6 @@ const Main = () =>{
                     </div>
                 </div>
             </div>
-        );
-    }else{
-        return (
-            <div>{ message }</div>
         );
     }
 }

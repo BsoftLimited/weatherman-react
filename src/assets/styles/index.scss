@@ -27,29 +27,84 @@ body{
     padding: 1.2rem;
 }
 
+@font-face {
+    font-family: Tangerine;
+    src: url(../fonts/Tangerine-Regular.ttf);
+}
+
+@font-face {
+  font-family: Pacifico;
+  src: url(../fonts/Pacifico-Regular.ttf);
+}
+
+@font-face {
+  font-family: AbrilFatface;
+  src: url(../fonts/AbrilFatface-Regular.ttf);
+}
+
+@font-face {
+  font-family: NovaSquare;
+  src: url(../fonts/NovaSquare-Regular.ttf);
+}
+
+@font-face {
+  font-family: PermanentMarker;
+  src: url(../fonts/PermanentMarker-Regular.ttf);
+}
+
 @mixin header{
-  font-size: 1.8rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight:200;
+  font-size: 2.2rem;
+  font-family: Tangerine;
+  font-weight:500;
+}
+
+@mixin header-bar{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
 }
 
 .header-title{
    @include header;
 }
 
-.header-bar{
+.header-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 2.4rem;
+  border-radius: 0.5rem;
+  border: solid 2px grey;
+  color: grey;
+  width: 3.4rem;
+  height: 3.4rem;
+  font-family: PermanentMarker;
+}
+
+.header-bar-desktop{
+    @include header-bar;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.header-bar-mobile{
+    @include header-bar;
     display: none;
     background-color: #00000020;
     backdrop-filter: blur(2px);
     position: fixed;
-    width: 100%;
     z-index: 200;
+    gap: 1rem;
 }
 
 .header-bar-title{
-  @include header;
+  font-size: 1.8rem;
+  font-family: Tangerine;
+  font-weight:200;
   color: white;
-  display: block;
+  display: inline;
 }
 
 @media (max-width: 991px) {
@@ -77,8 +132,12 @@ body{
       display: none;
   }
 
-  .header-bar{
-      display: block;
+  .header-bar-desktop{
+    display: none;
+  }
+
+  .header-bar-mobile{
+      display: flex;
       padding-bottom: 8px;
       padding-left: 10px;
       padding-right: 10px;

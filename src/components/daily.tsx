@@ -14,7 +14,7 @@ const DailyView = () =>{
                 <div className="others-item">
                     <h2 className="others-item-name">{ index === 0 ? "Today" : `${toDay(new Date(day.dt * 1000).getDay())} ${new Date(day.dt * 1000).getDate()}` }</h2>
                     <img className="others-item-image" src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@4x.png`} alt=""/>
-                    <div className="others-item-temp">{ Math.round(day.temp.min) }{ "\u00B0C"} - { Math.round(day.temp.max) }{ "\u00B0C"}</div>
+                    <div className="others-item-temp">{ Math.round(day.temp.min) }{ "\u00B0C"} / { Math.round(day.temp.max) }{ "\u00B0C"}</div>
                     <div className="others-item-more-container">
                         <div className="others-item-more"><BiDroplet /> { day.humidity }</div>
                         <div className="others-item-more"><BiWind /> { day.wind_speed }</div>
